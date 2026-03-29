@@ -66,7 +66,7 @@ const data = [
     publicationDate: "1965-01-01",
     author: "Frank Herbert",
     genres: ["science fiction", "novel", "adventure"],
-    hasMovieAdaptation: true,
+    hasMovieAdaptation: false,
     pages: 658,
     translations: {
       spanish: "",
@@ -143,21 +143,156 @@ function getBook(id) {
   return data.find((d) => d.id === id);
 }
 
+/*
 //Destructuring
 
-const book = getBook(2);
+const book = getBook(3);
 book;
 
 // const title = book.title;
 // const author = book.author;
 
-const { title, author, pages, publications, genres } = book;
+const { title, author, pages, publicationDate, genres, hasMovieAdaptation } =
+  book;
 
 console.log(author, title, genres);
 
 // const primaryGenre = genres[0];
 // const secondaryGenres = genres[1];
 
-const [primaryGenre, secondaryGenres] = genres;
+// REST operator for arrays
+const [primaryGenre, secondaryGenres, ...otherGenres] = genres;
 
-console.log(primaryGenre, secondaryGenres);
+console.log(primaryGenre, secondaryGenres, otherGenres);
+
+// spread operator for arrays
+const newGenres = [...genres, "epic fantasy"];
+newGenres;
+
+//spread operator for objects
+const updatedBook = {
+  ...book,
+  //adding  a new property
+  moviePublicationDate: "2001-12-19",
+
+  // overwriting an existing property
+  pages: 1210,
+};
+updatedBook;
+
+// function getYear(str){
+//   return str.split("-")[0];
+// }
+// Arrow functions
+const getYear = (str) => str.split("-")[0];
+console.log(getYear(publicationDate));
+
+//Using template iterals
+const summary = ` ${title},a ${pages}-page is a  book , was written by ${author} and published in ${getYear(publicationDate)} , The book has ${hasMovieAdaptation ? "" : "not"} been adapted as a movie`;
+summary;
+
+//ternary operator instead of if/else statements
+const pagesRange = pages > 1000 ? "over a thousand" : "less than 1000";
+pagesRange;
+console.log(`the book has ${pagesRange} pages`);
+
+//short circuiting and logical operators
+console.log(true && "some string");
+console.log(false && "some string");
+console.log(hasMovieAdaptation && "this book has a movie");
+
+//falsy :0, '', null , undefined
+console.log("jonas" && "some string");
+console.log(0 && "some string");
+
+console.log(true || "some string");
+console.log(false || "some string");
+
+console.log(book.translations.spanish);
+
+const spanishTranslation = book.translations.spanish || "NOT TRANSLATED";
+spanishTranslation;
+
+// console.log(book.reviews.librarything.reviewsCount);
+// const countWrong = book.reviews.librarything.reviewsCount || "no data";
+// countWrong;
+
+// const count = book.reviews.librarything.reviewsCount ?? "no data";
+// count;
+
+function getTotalReviewCount(book) {
+  const goodreads = book.reviews?.goodreads? .reviewsCount;
+  const librarything = book.reviews?.librarything?.reviewsCount ?? 0;
+  librarything;
+  return goodreads + librarything;
+}
+
+console.log(getTotalReviewCount(book));
+*/
+
+function getTotalReviewCount(book) {
+  const goodreads = book.reviews?.goodreads?.reviewsCount;
+  const librarything = book.reviews?.librarything?.reviewsCount ?? 0;
+  librarything;
+  return goodreads + librarything;
+}
+
+//array map method
+const books = getBooks();
+books;
+
+const x = [1, 2, 3, 4, 5].map((el) => el * 2);
+console.log(x);
+
+const titles = books.map((book) => book.title);
+titles;
+
+const essentialData = books.map((book) => ({
+  title: book.title,
+  author: book.author,
+  reviewsCount: getTotalReviewCount(book),
+}));
+essentialData;
+
+// array filter method
+const longBooksWithMovie = books
+  .filter((book) => book.pages > 500)
+  .filter((book) => book.hasMovieAdaptation);
+longBooksWithMovie;
+
+const adventureBooks = books
+  .filter((books) => books.genres.includes("adventure"))
+  .map((book) => book.title);
+adventureBooks;
+
+//array reduce method
+const pagesAllBooks = books.reduce((sum, book) => sum + book.pages, 0);
+pagesAllBooks;
+
+//array sort method
+const arr = [3, 7, 1, 9, 6];
+const sorted = arr.slice().sort((a, b) => a - b);
+sorted;
+arr;
+
+const sortedByPages = books.slice().sort((a, b) => b.pages - a.pages);
+sortedByPages;
+
+// 1) Add a book object to array
+const newBook = {
+  id: 6,
+  title: "Harry potter and the chamber of secrets",
+  author: "J. K. Rowling",
+};
+const booksAfterAdd = [...books, newBook];
+booksAfterAdd;
+
+//Delete book object from array
+const booksAfterDelete = booksAfterAdd.filter((book) => book.id !== 3);
+booksAfterDelete;
+
+//Update a book object in the array
+const booksAfterUpdate = booksAfterDelete.map((book) =>
+  book.id === 1 ? { ...book, pages: 1210 } : book,
+);
+booksAfterUpdate;
