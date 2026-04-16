@@ -4,7 +4,7 @@ const messages = [
   "Learn React ⚛️",
   "Apply for jobs 💼",
   "Invest your new income 🤑",
-];
+]; //hghg
 
 export default function App() {
   return (
@@ -105,3 +105,6 @@ function Button(textColor, bgColor, onClick, children) {
     </button>
   );
 }
+
+//jdfksfjd
+///skfjkdhgjdf
