@@ -95,6 +95,8 @@ function StepMessage({ step, children }) {
   );
 }
 
+// this is a comment
+
 function Button(textColor, bgColor, onClick, children) {
   return (
     <button
