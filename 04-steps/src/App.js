@@ -27,7 +27,7 @@ function Steps() {
   function handleNext() {
     if (step < 3) setStep((s) => s + 1);
 
-    //bad practice  do not use this
+    //bad practice // don't use
     // test.name = "Fred;";
     // setTest({ name: "Fred" });
   }
