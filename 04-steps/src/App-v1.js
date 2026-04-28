@@ -4,7 +4,7 @@ const messages = [
   "Learn React ⚛️",
   "Apply for jobs 💼",
   "Invest your new income 🤑",
-]; //hghg
+];
 
 export default function App() {
   return (
@@ -95,8 +95,6 @@ function StepMessage({ step, children }) {
   );
 }
 
-// this is a comment
-
 function Button(textColor, bgColor, onClick, children) {
   return (
     <button
@@ -107,6 +105,3 @@ function Button(textColor, bgColor, onClick, children) {
     </button>
   );
 }
-
-//jdfksfjd
-///skfjkdhgjdf
