@@ -111,13 +111,3 @@ function Star({ onRate, full, onHoverIn, onHoverOut, color, size }) {
     </span>
   );
 }
-
-/*
-FULL STAR
-
-
-
-EMPTY STAR
-
-
-*/
