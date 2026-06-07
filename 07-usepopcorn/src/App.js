@@ -70,6 +70,7 @@ export default function App() {
     fetchMovies();
   }, []);
 
+  /////
   return (
     <>
       <NavBar>
