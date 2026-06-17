@@ -243,7 +243,7 @@ function MovieList({ movies }) {
     </ul>
   );
 }
-//hgdrdfftrtfty
+
 
 function Movie({ movie }) {
   return (
