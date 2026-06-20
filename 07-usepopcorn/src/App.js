@@ -245,20 +245,23 @@ function MovieList({ movies }) {
 }
 
 
-function Movie({ movie }) {
-  return (
-    <li onClick={}>
-      <img src={movie.Poster} alt={`${movie.Title} poster`} />
-      <h3>{movie.Title}</h3>
-      <div>
-        <p>
-          <span>🗓</span>
-          <span>{movie.Year}</span>
-        </p>
-      </div>
-    </li>
-  );
-}
+//fghdghasdfgyhujsedrftgyhuji
+//ertyuh
+
+// function Movie({ movie }) {
+//   return (
+//     <li onClick={}>
+//       <img src={movie.Poster} alt={`${movie.Title} poster`} />
+//       <h3>{movie.Title}</h3>
+//       <div>
+//         <p>
+//           <span>🗓</span>
+//           <span>{movie.Year}</span>
+//         </p>
+//       </div>
+//     </li>
+//   );
+// }
 
 function MovieDetails({selectedId}){
   return <div className="details" >{selectedId}</div>
