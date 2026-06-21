@@ -57,11 +57,8 @@ export default function App() {
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [error , setError] = useState("")
-const [selectedId , setSelectedId]  = useState(null);
-
-
- 
+  const [error, setError] = useState("");
+  const [selectedId, setSelectedId] = useState(null);
 
   // useEffect(function(){
   //   console.log("after initial render")
@@ -77,63 +74,60 @@ const [selectedId , setSelectedId]  = useState(null);
 
   // console.log("During render")
 
-  useEffect(function () {
-    async function fetchMovies() {
-      setIsLoading(true);
-      setError("")
-      const res = await fetch(
-        `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
-      );
+  useEffect(
+    function () {
+      async function fetchMovies() {
+        try {
+          setIsLoading(true);
+          setError("");
 
+          const res = await fetch(
+            `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
+          );
 
-      if(!res.ok) throw new Error("Something went wrong with fetching movies");
+          if (!res.ok)
+            throw new Error("Something went wrong while fetching movies");
 
+          const data = await res.json();
 
+          if (data.Response === "False") throw new Error("Movie not found");
 
-      const data = await res.json();
-      if(data.Response === "False") throw new Error( "Movie not found");
-      setMovies(data.Search);
-      console.log(data.search)
-     
-    } catch (err){
-      console.log(err.message);
-      setError(err.message)
-    } finally{
-      setIsLoading(false);
-    }
+          setMovies(data.Search);
+        } catch (err) {
+          setError(err.message);
+        } finally {
+          setIsLoading(false);
+        }
+      }
 
-    if(!query.length<3){
-      setMovies([]);
-      setError("");
-      return;
-    }
-
-    fetchMovies();
-  }, [query]);
+      fetchMovies();
+    },
+    [query],
+  );
 
   return (
     <>
       <NavBar>
-        <Search query ={query} setQuery={setQuery} />
+        <Search query={query} setQuery={setQuery} />
         <NumResults movies={movies} />
       </NavBar>
 
       <Main>
         <Box>
           {/* {isLoading ? <Loader /> : <MovieList movies={movies} />} */}
-          {isLoading && <Loader  /> }
-          {!isLoading && !error && <MovieList movies = {movies} />}
-          {error && <ErrorMessage message ={error}/>}
-          </Box>
+          {isLoading && <Loader />}
+          {!isLoading && !error && <MovieList movies={movies} />}
+          {error && <ErrorMessage message={error} />}
+        </Box>
 
         <Box>
-          {
-            selectedId ?(<MovieDetails selectedId={selectedId}/>) :
-           (
-             <>
-          <WatchedSummary watched={watched} />
-          <WatchedMovieList watched={watched} />
-          </>
+          {selectedId ? (
+            <MovieDetails selectedId={selectedId} />
+          ) : (
+            <>
+              <WatchedSummary watched={watched} />
+              <WatchedMovieList watched={watched} />
+            </>
           )}
         </Box>
       </Main>
@@ -145,11 +139,13 @@ function Loader() {
   return <p className="loader">Loading...</p>;
 }
 
-
-function ErrorMessage({message}){
-  return <p className="error">
-    <span>⛔</span>{message}
-  </p>
+function ErrorMessage({ message }) {
+  return (
+    <p className="error">
+      <span>⛔</span>
+      {message}
+    </p>
+  );
 }
 
 function NavBar({ children }) {
@@ -170,8 +166,7 @@ function Logo() {
   );
 }
 
-function Search({query ,  setQuery}) {
-  
+function Search({ query, setQuery }) {
   return (
     <input
       className="search"
@@ -244,12 +239,9 @@ function MovieList({ movies }) {
   );
 }
 
-
-
-
 function Movie({ movie }) {
   return (
-    <li onClick={}>
+    <li>
       <img src={movie.Poster} alt={`${movie.Title} poster`} />
       <h3>{movie.Title}</h3>
       <div>
@@ -262,8 +254,8 @@ function Movie({ movie }) {
   );
 }
 
-function MovieDetails({selectedId}){
-  return <div className="details" >{selectedId}</div>
+function MovieDetails({ selectedId }) {
+  return <div className="details">{selectedId}</div>;
 }
 
 function WatchedSummary({ watched }) {
