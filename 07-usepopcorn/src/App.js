@@ -9,13 +9,7 @@ const average = (arr) =>
 
 const KEY = "aa740ee4";
 
-// onst average = (arr) =>
-//   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
-// const KEY = "aa740ee4";
-//tgrgurghjdfgnrtg
-///rghtrgidughd
-///rhroihjgifhg
 
 export default function App() {
   const [query, setQuery] = useState("");
