@@ -9,8 +9,6 @@ const average = (arr) =>
 
 const KEY = "aa740ee4";
 
-
-
 export default function App() {
   const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState(null);
@@ -435,3 +433,8 @@ function WatchedMovie({ movie, onDeleteWatched }) {
     </li>
   );
 }
+
+//erjifherjghefyugfihfdfgyhujik
+///drftgvbhunjimko,lp;.
+//drftgybhunjimko,l
+//sedrftgvybhunjimko
