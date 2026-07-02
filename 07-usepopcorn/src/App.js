@@ -433,8 +433,3 @@ function WatchedMovie({ movie, onDeleteWatched }) {
     </li>
   );
 }
-
-//erjifherjghefyugfihfdfgyhujik
-///drftgvbhunjimko,lp;.
-//drftgybhunjimko,l
-//sedrftgvybhunjimko
