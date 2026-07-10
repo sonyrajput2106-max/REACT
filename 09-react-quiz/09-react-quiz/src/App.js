@@ -1,7 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useReducer } from "react";
 import Header from "./Header";
 import Main from "./Main";
 import StartScreen from "./StartScreen";
+import Loader from "./Loader";
+import Error from "./Error";
 
 import Question from "./Question";
 
@@ -14,7 +16,7 @@ const initialState = {
 
 function reducer(state, action) {
   switch (action.type) {
-    case " dataReceived":
+    case "dataReceived":
       return {
         ...state,
         questions: action.payload,
@@ -34,7 +36,7 @@ function reducer(state, action) {
 }
 
 export default function App() {
-  const [{ questions, state }, dispatch] = useReducer(reducer, initialState);
+  const [{ questions, status }, dispatch] = useReducer(reducer, initialState);
 
   const numQuestions = questions.length;
 
@@ -59,3 +61,8 @@ export default function App() {
     </div>
   );
 }
+
+//edrftghjk
+//qwsedrftgyhu
+//wqerdtfgyhuASDFGHJdfghdgfhjfghdfgh
+//sdfghjjkfd
