@@ -5,9 +5,6 @@ import Homepage from "./pages/Homepage";
 
 function App() {
   return (
-    <div>
- <h1>Hello Router!</h1>
-   
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Homepage />} />
@@ -15,7 +12,6 @@ function App() {
         <Route path="pricing" element={<Pricing />} />
       </Routes>
     </BrowserRouter>
-    </div>
   );
 }
 
